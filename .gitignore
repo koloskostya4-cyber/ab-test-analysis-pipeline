@@ -35,3 +35,7 @@ docker-volumes/
 # Backup files
 *.bak
 *.backup
+
+# Logs
+logs/
+*.log
