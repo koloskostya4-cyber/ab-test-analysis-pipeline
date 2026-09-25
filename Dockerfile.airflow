@@ -1,0 +1,8 @@
+FROM apache/airflow:2.9.0
+
+# Устанавливаем совместимые версии пакетов
+RUN pip install --no-cache-dir \
+    "numpy==1.26.4" \
+    "pandas==2.1.4" \
+    "scipy==1.11.4" \
+    "psycopg2-binary==2.9.9"
