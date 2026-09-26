@@ -14,10 +14,10 @@ CREATE TABLE IF NOT exists user_sessions (
 
 
 -- Importing data from CSV
-COPY user_sessions
+COPY user_sessions (user_id, group_type, page_views, time_spent, conversion, device, location)
 FROM '/data/company/data.csv'
 DELIMITER ','
-CSV header;
+CSV HEADER;
 
 -- тест
 SELECT COUNT(*) FROM user_sessions;
