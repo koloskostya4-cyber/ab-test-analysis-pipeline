@@ -160,8 +160,8 @@ A few non-obvious issues surfaced while building this pipeline and are worth doc
 **Prerequisites:** Docker, Docker Compose, Git.
 
 ```bash
-git clone https://github.com/koloskostya4-cyber/data-pipeline-project.git
-cd data-pipeline-project
+git clone https://github.com/koloskostya4-cyber/ab-test-analysis-pipeline.git
+cd ab-test-analysis-pipeline
 
 # 1. Build the custom Airflow image
 docker build -f Dockerfile.airflow -t my-airflow:2.9.0 .
