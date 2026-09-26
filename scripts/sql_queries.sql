@@ -6,7 +6,7 @@ CREATE TABLE IF NOT exists user_sessions (
     user_id INTEGER PRIMARY KEY,
     group_type VARCHAR(1) CHECK (group_type IN ('A', 'B')),
     page_views INTEGER,
-    time_spent INTEGER, -- в секундах
+    time_spent INTEGER, -- in seconds
     conversion VARCHAR(3) CHECK (conversion IN ('Yes', 'No')),
     device VARCHAR(20),
     location VARCHAR(50)
@@ -19,7 +19,7 @@ FROM '/data/company/data.csv'
 DELIMITER ','
 CSV HEADER;
 
--- тест
+-- test
 SELECT COUNT(*) FROM user_sessions;
 
 
@@ -40,7 +40,7 @@ SELECT
 FROM group_stats a
 JOIN group_stats b ON a.group_type = 'A' AND b.group_type = 'B';
 
--- 2 Тop-3 users by time on the site in each group
+-- 2 Top-3 users by time on the site in each group
 SELECT 
     user_id,
     group_type,

@@ -240,4 +240,4 @@ docker exec -it airflow airflow dags trigger ab_test_analysis
 
 ## Author
 
-[LinkedIn](www.linkedin.com/in/konstantin-shatalov-1280983b2)
+[LinkedIn](https://www.linkedin.com/in/konstantin-shatalov-1280983b2)

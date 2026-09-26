@@ -1,6 +1,6 @@
 FROM apache/airflow:2.9.0
 
-# Устанавливаем совместимые версии пакетов
+# Install compatible package versions
 RUN pip install --no-cache-dir \
     "numpy==1.26.4" \
     "pandas==2.1.4" \
