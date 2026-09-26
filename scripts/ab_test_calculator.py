@@ -169,14 +169,34 @@ def save_results(conn, n_a: int, n_b: int, time_result: dict,
         )
     conn.commit()
 
+def srm_check(n_a: int, n_b: int, expected_ratio: float = 0.5) -> dict:
+    """Sample Ratio Mismatch check."""
+    total = n_a + n_b
+    expected_a = total * expected_ratio
+    expected_b = total * (1 - expected_ratio)
+    chi2, p_value = stats.chisquare(f_obs=[n_a, n_b], f_exp=[expected_a, expected_b])
+    return {
+        "n_a": n_a,
+        "n_b": n_b,
+        "observed_ratio": round(n_a / total, 4),
+        "expected_ratio": expected_ratio,
+        "chi2_stat": round(float(chi2), 4),
+        "p_value": round(float(p_value), 4),
+        "srm_detected": bool(p_value < 0.001),
+    }
 
 def run_analysis():
     conn = get_connection()
     try:
         df = load_sessions(conn)
 
+
         group_a = df[df["group_type"] == "A"]
         group_b = df[df["group_type"] == "B"]
+
+        # SRM check
+        srm = srm_check(len(group_a), len(group_b))
+        print(json.dumps({"srm_check": srm}, indent=2))
 
         time_result = welch_t_test(group_a["time_spent"], group_b["time_spent"])
         views_result = welch_t_test(group_a["page_views"], group_b["page_views"])
